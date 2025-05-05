@@ -14,3 +14,9 @@ typedef enum {
   MEDIUM, // 16x16, 지뢰 40개
   HARD, // 16x30, 지뢰 99개
 } Difficulty;
+
+typedef enum {
+  PLAYING, 
+  GAME_OVER, 
+  WIN,
+} GameState;

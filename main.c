@@ -1,4 +1,5 @@
 #include "util.h"
+#include "title.h"
 
 void initializeProgram() {
   setColor(DEFAULT);
@@ -10,6 +11,5 @@ void initializeProgram() {
 
 int main() {
   initializeProgram();
-  printxy(10, 10, "Hello, World!");
-  waitForInput();
+  titleLoop();
 }
