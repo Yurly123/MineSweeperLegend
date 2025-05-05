@@ -20,3 +20,9 @@ typedef enum {
   GAME_OVER, 
   WIN,
 } GameState;
+
+typedef struct {
+  int x;
+  int y;
+  char* text;
+} Option;

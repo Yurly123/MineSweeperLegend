@@ -4,16 +4,8 @@ void clearScreen() {
   system("cls || clear");
 }
 
-char getInput(const char* availableInputs, ...) {
-  va_list args;
-  va_start(args, availableInputs);
-
-  char input;
-  do input = _getch();
-    while (strchr(availableInputs, input) == NULL);
-  
-  va_end(args);
-  return input;
+char getInput() {
+  return _getch();
 }
 
 void waitForInput() {
@@ -37,6 +29,10 @@ void printxy(int x, int y, const char* format, ...) {
   va_end(args);
 }
 
+void printOption(Option option) {
+  printxy(option.x, option.y, option.text);
+}
+
 void setColor(Color color) {
-  printf("\e[%dm", color + 30);
+  printf("\e[%dm", color);
 }

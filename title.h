@@ -2,7 +2,8 @@
 
 #include "util.h"
 
+#define TITLE_OPTIONS_COUNT 2
+
 void titleLoop();
-void printTitleScreen(int selectedOption);
-void updateTitleScreen(int selectedOption);
-void handleTitleInput(int* selectedOption);
+void printTitleScreen(Option* options);
+void handleTitleInput(Option* options, int* selectedOption);
