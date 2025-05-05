@@ -1,8 +1,9 @@
 #pragma once
 
 #include "util.h"
+#include "ranking.h"
 
-#define TITLE_OPTIONS_COUNT 2
+#define TITLE_OPTIONS_COUNT 4
 
 void titleLoop();
 void printTitleScreen(Option* options);

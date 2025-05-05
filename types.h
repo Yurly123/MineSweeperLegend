@@ -26,3 +26,8 @@ typedef struct {
   int y;
   char* text;
 } Option;
+
+typedef struct {
+  char* name;
+  int time;
+} RankingEntry;

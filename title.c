@@ -2,13 +2,30 @@
 
 void titleLoop() {
   Option options[TITLE_OPTIONS_COUNT] = {
-    { 10, 21, "시작하기" },
-    { 80, 21, "종료하기" },
+    {10, 21, "시작하기"},
+    {30, 21, "게임 설명"},
+    {50, 21, "랭킹"},
+    {70, 21, "종료하기"},
   };
   int selectedOption = 0;
   while(1) {
     printTitleScreen(options);
     handleTitleInput(options, &selectedOption);
+
+    switch (selectedOption) {
+      case 0: // 시작하기
+        clearScreen();
+        break;
+      case 1: // 게임 설명
+        clearScreen();
+        break;
+      case 2: // 랭킹
+        rankingLoop();
+        break;
+      case 3: // 종료하기
+        clearScreen();
+        exit(0);
+    }
   }
 }
 
