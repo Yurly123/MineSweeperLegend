@@ -5,6 +5,8 @@
 #include <time.h>
 #include <stdarg.h>
 #include <string.h>
+#include <conio.h>
+#include <windows.h>
 
 void clearScreen();
 char getInput(const char* availableInputs, ...);

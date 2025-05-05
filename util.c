@@ -9,7 +9,7 @@ char getInput(const char* availableInputs, ...) {
   va_start(args, availableInputs);
 
   char input;
-  do input = getchar(); 
+  do input = _getch();
     while (strchr(availableInputs, input) == NULL);
   
   va_end(args);
@@ -17,7 +17,7 @@ char getInput(const char* availableInputs, ...) {
 }
 
 void waitForInput() {
-  getchar();
+  _getch();
 }
 
 void hideCursor() {
