@@ -1,7 +1,7 @@
 #include "util.h"
 
 void clearScreen() {
-  system("clear");
+  system("cls || clear");
 }
 
 char getInput(const char* availableInputs, ...) {
