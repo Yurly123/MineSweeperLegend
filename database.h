@@ -5,6 +5,7 @@
 #include "types.h"
 
 RankingEntry* getRankingEntries(int* count);
+void freeRankingEntries(RankingEntry *entries, int count);
 void postRankingEntry(RankingEntry entry);
 
 typedef enum {

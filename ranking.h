@@ -4,4 +4,4 @@
 #include "database.h"
 
 void rankingLoop();
-void printRankingScreen();
+void printRankingScreen(RankingEntry* entries, int count);

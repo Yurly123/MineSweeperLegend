@@ -62,6 +62,7 @@ RankingEntry *parseRankingJson(const char *json, int *count) {
     return NULL;
 
   RankingEntry *entries = malloc(sizeof(RankingEntry) * docCount);
+  if (!entries) return NULL;
 
   int index = 0;
   const char *current = documents;
@@ -74,12 +75,18 @@ RankingEntry *parseRankingJson(const char *json, int *count) {
 
     current++;
     index++;
-    if (index >= docCount)
-      break;
   }
 
   *count = index;
   return entries;
+}
+
+void freeRankingEntries(RankingEntry *entries, int count) {
+  if (!entries) return;
+  for (int i = 0; i < count; i++) {
+    free(entries[i].name);
+  }
+  free(entries);
 }
 
 RankingEntry *getRankingEntries(int *count) {
@@ -90,6 +97,7 @@ RankingEntry *getRankingEntries(int *count) {
   }
 
   RankingEntry *entries = parseRankingJson(data, count);
+  free(data); 
   return entries;
 }
 
@@ -99,7 +107,8 @@ void postRankingEntry(RankingEntry entry) {
            "{\\\"fields\\\": {\\\"name\\\": {\\\"stringValue\\\": \\\"%s\\\"}, \\\"time\\\": {\\\"integerValue\\\": \\\"%d\\\"}}}",
            entry.name, entry.time);
 
-  executeHttpRequest(getRankingHttpUrl(), POST, body);
+  char* result = executeHttpRequest(getRankingHttpUrl(), POST, body);
+  if (result) free(result);
 }
 
 char *executeHttpRequest(const char *url, HttpMethod method, const char *body) {
