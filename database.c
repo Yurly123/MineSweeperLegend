@@ -74,7 +74,7 @@ RankingEntry* parseRankingJson(const char* json, int* count) {
 }
 
 RankingEntry* getRankingEntries(int* count) {
-    char* data = executeHttpRequest(getRankingHttpUrl());
+    char* data = executeHttpRequest(getRankingHttpUrl(), GET, NULL);
     if (!data) {
         *count = 0;
         return NULL;
@@ -84,9 +84,30 @@ RankingEntry* getRankingEntries(int* count) {
     return entries;
 }
 
-char* executeHttpRequest(const char* url) {
-    char command[512];
-    snprintf(command, sizeof(command), "curl -s -S \"%s\"", url);
+void postRankingEntry(RankingEntry entry) {
+    char body[256];
+    snprintf(body, sizeof(body),
+             "{\\\"fields\\\": {\\\"name\\\": {\\\"stringValue\\\": \\\"%s\\\"}, \\\"time\\\": {\\\"integerValue\\\": \\\"%d\\\"}}}",
+             entry.name, entry.time);
+    
+    executeHttpRequest(getRankingHttpUrl(), POST, body);
+}
+
+char* executeHttpRequest(const char* url, HttpMethod method, const char* body) {
+    char command[1024];
+    
+    switch (method) {
+        case GET:
+            snprintf(command, sizeof(command), "curl -s -S \"%s\"", url);
+            break;
+        case POST:
+            snprintf(command, sizeof(command), 
+                     "curl -X POST -H \"Content-Type: application/json\" -d \"%s\" -s -S \"%s\"", 
+                     body, url);
+            break;
+        default:
+            return NULL;  // Unsupported method
+    }
     
     FILE* pipe = popen(command, "r");
     if (!pipe) return NULL;

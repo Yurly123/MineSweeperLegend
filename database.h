@@ -5,4 +5,9 @@
 #include "types.h"
 
 RankingEntry* getRankingEntries(int* count);
-char* executeHttpRequest(const char* url);
+void postRankingEntry(RankingEntry entry);
+
+typedef enum {
+    GET, POST
+} HttpMethod;
+char* executeHttpRequest(const char* url, HttpMethod method, const char* body);
