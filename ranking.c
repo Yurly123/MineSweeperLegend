@@ -2,8 +2,6 @@
 
 void rankingLoop() {
   printRankingScreen();
-  RankingEntry entry = { "tempName", 100 };
-  postRankingEntry(entry);
   waitForInput();
 }
 

@@ -1,5 +1,3 @@
 {
-    "files.associations": {
-        "ranking.h": "c"
-    }
+    "editor.tabSize": 2
 }
