@@ -73,6 +73,12 @@ RankingEntry *parseRankingJson(const char *json, int *count) {
     const char *timeField = findJsonField(current, "time");
     entries[index].time = extractIntValue(timeField);
 
+    const char *difficultyField = findJsonField(current, "difficulty");
+    entries[index].difficulty = extractIntValue(difficultyField);
+
+    const char *commentField = findJsonField(current, "comment");
+    entries[index].comment = extractStringValue(commentField);
+
     current++;
     index++;
   }
@@ -85,6 +91,7 @@ void freeRankingEntries(RankingEntry *entries, int count) {
   if (!entries) return;
   for (int i = 0; i < count; i++) {
     free(entries[i].name);
+    free(entries[i].comment); 
   }
   free(entries);
 }
@@ -104,8 +111,13 @@ RankingEntry *getRankingEntries(int *count) {
 void postRankingEntry(RankingEntry entry) {
   char body[256];
   snprintf(body, sizeof(body),
-           "{\\\"fields\\\": {\\\"name\\\": {\\\"stringValue\\\": \\\"%s\\\"}, \\\"time\\\": {\\\"integerValue\\\": \\\"%d\\\"}}}",
-           entry.name, entry.time);
+           "{\\\"fields\\\": {"
+           "\\\"name\\\": {\\\"stringValue\\\": \\\"%s\\\"}, "
+           "\\\"time\\\": {\\\"integerValue\\\": \\\"%d\\\"}, "
+           "\\\"difficulty\\\": {\\\"integerValue\\\": \\\"%d\\\"}, "
+           "\\\"comment\\\": {\\\"stringValue\\\": \\\"%s\\\"}"
+           "}}",
+           entry.name, entry.time, entry.difficulty, entry.comment);
 
   char* result = executeHttpRequest(getRankingHttpUrl(), POST, body);
   if (result) free(result);

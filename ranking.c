@@ -11,8 +11,9 @@ void rankingLoop() {
 
 void printRankingScreen(RankingEntry* entries, int count) {
   clearScreen();
+  char difficultyString[3][10] = {"쉬움", "보통", "어려움"};
   for (int i = 0; i < count; i++) {
-    printf("%d. %s - %d\n", i + 1, entries[i].name, entries[i].time);
+    printf("%d. %s (%s, %d초): %s\n", i + 1, entries[i].name, difficultyString[entries[i].difficulty], entries[i].time, entries[i].comment);
   }
   waitForInput();
 }

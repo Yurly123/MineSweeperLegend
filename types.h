@@ -10,9 +10,9 @@ typedef struct {
 } Cell;
 
 typedef enum {
-  EASY, // 9x9, 지뢰 10개
-  MEDIUM, // 16x16, 지뢰 40개
-  HARD, // 16x30, 지뢰 99개
+  EASY = 0, // 9x9, 지뢰 10개
+  MEDIUM = 1, // 16x16, 지뢰 40개
+  HARD = 2, // 16x30, 지뢰 99개
 } Difficulty;
 
 typedef enum {
@@ -30,4 +30,6 @@ typedef struct {
 typedef struct {
   char* name;
   int time;
+  Difficulty difficulty;
+  char* comment;
 } RankingEntry;
