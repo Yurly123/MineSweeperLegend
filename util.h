@@ -16,7 +16,7 @@ void waitForInput();
 void hideCursor();
 void gotoxy(int x, int y);
 void printxy(int x, int y, const char* format, ...);
-void printOption(Option option);
+void printTextBox(TextBox option);
 
 typedef enum {
   BLACK = 30,

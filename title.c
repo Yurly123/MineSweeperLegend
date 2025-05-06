@@ -1,7 +1,7 @@
 #include "title.h"
 
 void titleLoop() {
-  Option options[TITLE_OPTIONS_COUNT] = {
+  TextBox options[TITLE_OPTIONS_COUNT] = {
     {10, 21, "시작하기"},
     {30, 21, "게임 설명"},
     {50, 21, "랭킹"},
@@ -24,12 +24,12 @@ void titleLoop() {
         break;
       case 3: // 종료하기
         clearScreen();
-        exit(0);
+        return;
     }
   }
 }
 
-void printTitleScreen(Option* options) {
+void printTitleScreen(TextBox* options) {
   clearScreen();
   gotoxy(0, 0);
   puts("                                                                                                    ");
@@ -58,7 +58,7 @@ void printTitleScreen(Option* options) {
   puts("                                                                                                    ");
 
   for (int i = 0; i < TITLE_OPTIONS_COUNT; ++i) {
-    printOption(options[i]);
+    printTextBox(options[i]);
   }
   
   setColor(BRIGHT_BLACK);
@@ -66,15 +66,15 @@ void printTitleScreen(Option* options) {
   setColor(RESET);
 }
 
-void handleTitleInput(Option* options, int *selectedOption) {
+void handleTitleInput(TextBox* options, int *selectedOption) {
   while (1) {
     setColor(GREEN);
-    printOption(options[*selectedOption]);
+    printTextBox(options[*selectedOption]);
     
     char input = getInput();
 
     setColor(RESET);
-    printOption(options[*selectedOption]);
+    printTextBox(options[*selectedOption]);
 
     switch (input) {
       case 'a':

@@ -29,7 +29,7 @@ void printxy(int x, int y, const char* format, ...) {
   va_end(args);
 }
 
-void printOption(Option option) {
+void printTextBox(TextBox option) {
   printxy(option.x, option.y, option.text);
 }
 

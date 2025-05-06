@@ -25,7 +25,7 @@ typedef struct {
   int x;
   int y;
   char* text;
-} Option;
+} TextBox;
 
 typedef struct {
   char* name;

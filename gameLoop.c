@@ -1,6 +1,6 @@
 #include "gameLoop.h"
 
-void gameLoop(Cell** board, Difficulty difficulty) {
+GameState gameLoop(Cell** board, Difficulty difficulty) {
   initializeBoard(board, difficulty);
   printGameScreen(board, difficulty);
   while (1) {
@@ -15,13 +15,13 @@ void gameLoop(Cell** board, Difficulty difficulty) {
         printf("Game Over!");
         waitForInput();
         clearScreen();
-        return;
+        return GAME_OVER;
       case WIN:
         clearScreen();
         printf("You Win!");
         waitForInput();
         clearScreen();
-        return;
+        return WIN;
     }
   }
 }
