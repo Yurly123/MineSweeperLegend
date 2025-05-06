@@ -2,7 +2,6 @@
 
 #include "util.h"
 #include "types.h"
-#include "initializeBoard.h"
 
 GameState gameLoop(Cell** board, Difficulty difficulty);
 void printGameScreen(Cell** board, Difficulty difficulty);

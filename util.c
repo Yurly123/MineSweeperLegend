@@ -5,7 +5,11 @@ void clearScreen() {
 }
 
 char getInput() {
-  return _getch();
+  char input = _getch();
+  if (input >= 'A' && input <= 'Z') {
+    input += 'a' - 'A'; 
+  }
+  return input;
 }
 
 void waitForInput() {

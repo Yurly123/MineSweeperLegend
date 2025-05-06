@@ -14,7 +14,7 @@ void titleLoop() {
 
     switch (selectedOption) {
       case 0: // 시작하기
-        clearScreen();
+        gameFlow();
         break;
       case 1: // 게임 설명
         clearScreen();
