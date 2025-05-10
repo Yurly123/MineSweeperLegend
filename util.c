@@ -37,6 +37,27 @@ void printTextBox(struct TextBox option) {
   printxy(option.x, option.y, option.text);
 }
 
-void setColor(enum Color color) {
-  printf("\e[%dm", color);
+enum Color textColor = RESET;
+enum Color backgroundColor = RESET;
+
+void setTextColor(enum Color color) {
+  setTextAndBackgroundColor(color, backgroundColor);
+}
+
+void setBackgroundColor(enum Color color) {
+  setTextAndBackgroundColor(textColor, color);
+}
+
+void setTextAndBackgroundColor(enum Color text, enum Color background) {
+  textColor = text;
+  backgroundColor = background;
+
+  if (text == RESET && background == RESET) 
+    printf("\e[0m");
+  else if (text == RESET) 
+    printf("\e[%dm", background + 40);
+  else if (background == RESET) 
+    printf("\e[%dm", text + 30);
+  else 
+    printf("\e[%d;%dm", text + 30, background + 40);
 }

@@ -31,12 +31,12 @@ enum Difficulty selectDifficulty() {
     printTextBox(options[i]);
   int selectedOption = 0;
   while (1) {
-    setColor(GREEN);
+    setTextColor(GREEN);
     printTextBox(options[selectedOption]);
 
     char input = getInput();
 
-    setColor(RESET);
+    setTextColor(RESET);
     printTextBox(options[selectedOption]);
 
     switch (input) {

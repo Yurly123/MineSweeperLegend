@@ -61,19 +61,19 @@ void printTitleScreen(struct TextBox* options) {
     printTextBox(options[i]);
   }
   
-  setColor(BRIGHT_BLACK);
+  setTextColor(BRIGHT_BLACK);
   printxy(33, 23, "(w,a,s,d) 이동 / (j) 선택");
-  setColor(RESET);
+  setTextColor(RESET);
 }
 
 void handleTitleInput(struct TextBox* options, int *selectedOption) {
   while (1) {
-    setColor(GREEN);
+    setTextColor(GREEN);
     printTextBox(options[*selectedOption]);
     
     char input = getInput();
 
-    setColor(RESET);
+    setTextColor(RESET);
     printTextBox(options[*selectedOption]);
 
     switch (input) {

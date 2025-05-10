@@ -2,7 +2,7 @@
 #include "title.h"
 
 void initializeProgram() {
-  setColor(RESET);
+  setTextColor(RESET);
   srand((unsigned int)time(NULL));
   SetConsoleTitle("Mine Sweeper Legend");
   clearScreen();
