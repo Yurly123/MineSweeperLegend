@@ -6,5 +6,5 @@
 #include "initializeBoard.h"
 
 void gameFlow();
-Difficulty selectDifficulty();
-void freeBoard(Cell** board, Difficulty difficulty);
+enum Difficulty selectDifficulty();
+void freeBoard(struct Cell** board, enum Difficulty difficulty);

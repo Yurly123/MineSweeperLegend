@@ -1,7 +1,7 @@
 #include "title.h"
 
 void titleLoop() {
-  TextBox options[TITLE_OPTIONS_COUNT] = {
+  struct TextBox options[TITLE_OPTIONS_COUNT] = {
     {10, 21, "시작하기"},
     {30, 21, "게임 설명"},
     {50, 21, "랭킹"},
@@ -29,7 +29,7 @@ void titleLoop() {
   }
 }
 
-void printTitleScreen(TextBox* options) {
+void printTitleScreen(struct TextBox* options) {
   clearScreen();
   gotoxy(0, 0);
   puts("                                                                                                    ");
@@ -66,7 +66,7 @@ void printTitleScreen(TextBox* options) {
   setColor(RESET);
 }
 
-void handleTitleInput(TextBox* options, int *selectedOption) {
+void handleTitleInput(struct TextBox* options, int *selectedOption) {
   while (1) {
     setColor(GREEN);
     printTextBox(options[*selectedOption]);

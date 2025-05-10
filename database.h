@@ -4,9 +4,9 @@
 #include "env.h"
 #include "types.h"
 
-RankingEntry* getRankingEntries(int* count);
-void freeRankingEntries(RankingEntry *entries, int count);
-void postRankingEntry(RankingEntry entry);
+struct RankingEntry* getRankingEntries(int* count);
+void freeRankingEntries(struct RankingEntry *entries, int count);
+void postRankingEntry(struct RankingEntry entry);
 
 typedef enum {
     GET, POST

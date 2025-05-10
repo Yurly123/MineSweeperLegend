@@ -2,34 +2,34 @@
 
 #include "util.h"
 
-typedef struct {
+struct Cell {
   int isMine;
   int adjacentMines;
   int isFlagged;
   int isRevealed;
-} Cell;
+};
 
-typedef enum {
+enum Difficulty {
   EASY = 0, // 9x9, 지뢰 10개
   MEDIUM = 1, // 16x16, 지뢰 40개
   HARD = 2, // 16x30, 지뢰 99개
-} Difficulty;
+};
 
-typedef enum {
+enum GameState {
   PLAYING, 
   GAME_OVER, 
   WIN,
-} GameState;
+};
 
-typedef struct {
+struct TextBox {
   int x;
   int y;
   char* text;
-} TextBox;
+};
 
-typedef struct {
+struct RankingEntry {
   char* name;
   int time;
-  Difficulty difficulty;
+  enum Difficulty difficulty;
   char* comment;
-} RankingEntry;
+};

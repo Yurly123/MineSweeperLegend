@@ -1,11 +1,11 @@
 #include "gameFlow.h"
 
 void gameFlow() {
-  Difficulty difficulty = selectDifficulty();
-  Cell** board;
+  enum Difficulty difficulty = selectDifficulty();
+  struct Cell** board;
   initializeBoard(board, difficulty);
 
-  GameState gameResult = gameLoop(board, difficulty);
+  enum GameState gameResult = gameLoop(board, difficulty);
   switch (gameResult) {
     case GAME_OVER:
       printxy(0, 0, "Game Over!");
@@ -20,9 +20,9 @@ void gameFlow() {
   freeBoard(board, difficulty);
 }
 
-Difficulty selectDifficulty() {
+enum Difficulty selectDifficulty() {
   clearScreen();
-  TextBox options[3] = {
+  struct TextBox options[3] = {
     {0, 1, "쉬움 (9x9, 지뢰 10개)"},
     {0, 2, "보통 (16x16, 지뢰 40개)"},
     {0, 3, "어려움 (16x30, 지뢰 99개)"}
@@ -48,12 +48,12 @@ Difficulty selectDifficulty() {
         break;
       case 'j':
         clearScreen();
-        return (Difficulty)selectedOption;
+        return (enum Difficulty)selectedOption;
     }
   }
 } 
 
-void freeBoard(Cell** board, Difficulty difficulty) {
+void freeBoard(struct Cell** board, enum Difficulty difficulty) {
   int rows;
   switch (difficulty) {
     case EASY: rows = 9; break;

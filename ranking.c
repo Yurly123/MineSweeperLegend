@@ -2,14 +2,14 @@
 
 void rankingLoop() {
   int count = 0;
-  RankingEntry* rankingEntries = getRankingEntries(&count);
+  struct RankingEntry* rankingEntries = getRankingEntries(&count);
 
   printRankingScreen(rankingEntries, count);
 
   freeRankingEntries(rankingEntries, count);
 }
 
-void printRankingScreen(RankingEntry* entries, int count) {
+void printRankingScreen(struct RankingEntry* entries, int count) {
   clearScreen();
   char difficultyString[3][10] = {"쉬움", "보통", "어려움"};
   for (int i = 0; i < count; i++) {

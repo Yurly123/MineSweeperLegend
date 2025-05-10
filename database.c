@@ -46,7 +46,7 @@ int extractIntValue(const char *json) {
   return atoi(start);
 }
 
-RankingEntry *parseRankingJson(const char *json, int *count) {
+struct RankingEntry *parseRankingJson(const char *json, int *count) {
   *count = 0;
 
   const char *documents = strstr(json, "\"documents\":");
@@ -61,7 +61,7 @@ RankingEntry *parseRankingJson(const char *json, int *count) {
   if (docCount == 0)
     return NULL;
 
-  RankingEntry *entries = malloc(sizeof(RankingEntry) * docCount);
+  struct RankingEntry *entries = malloc(sizeof(struct RankingEntry) * docCount);
   if (!entries) return NULL;
 
   int index = 0;
@@ -87,7 +87,7 @@ RankingEntry *parseRankingJson(const char *json, int *count) {
   return entries;
 }
 
-void freeRankingEntries(RankingEntry *entries, int count) {
+void freeRankingEntries(struct RankingEntry *entries, int count) {
   if (!entries) return;
   for (int i = 0; i < count; i++) {
     free(entries[i].name);
@@ -96,19 +96,19 @@ void freeRankingEntries(RankingEntry *entries, int count) {
   free(entries);
 }
 
-RankingEntry *getRankingEntries(int *count) {
+struct RankingEntry *getRankingEntries(int *count) {
   char *data = executeHttpRequest(getRankingHttpUrl(), GET, NULL);
   if (!data) {
     *count = 0;
     return NULL;
   }
 
-  RankingEntry *entries = parseRankingJson(data, count);
+  struct RankingEntry *entries = parseRankingJson(data, count);
   free(data); 
   return entries;
 }
 
-void postRankingEntry(RankingEntry entry) {
+void postRankingEntry(struct RankingEntry entry) {
   char body[256];
   snprintf(body, sizeof(body),
            "{\\\"fields\\\": {"

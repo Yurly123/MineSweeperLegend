@@ -7,5 +7,5 @@
 #define TITLE_OPTIONS_COUNT 4
 
 void titleLoop();
-void printTitleScreen(TextBox* options);
-void handleTitleInput(TextBox* options, int* selectedOption);
+void printTitleScreen(struct TextBox* options);
+void handleTitleInput(struct TextBox* options, int* selectedOption);

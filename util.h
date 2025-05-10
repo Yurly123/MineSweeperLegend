@@ -16,9 +16,9 @@ void waitForInput();
 void hideCursor();
 void gotoxy(int x, int y);
 void printxy(int x, int y, const char* format, ...);
-void printTextBox(TextBox option);
+void printTextBox(struct TextBox option);
 
-typedef enum {
+enum Color {
   BLACK = 30,
   RED = 31,
   GREEN = 32,
@@ -36,6 +36,6 @@ typedef enum {
   BRIGHT_CYAN = 96,
   BRIGHT_WHITE = 97,
   RESET = 0,
-} Color;
-void setColor(Color color);
+};
+void setColor(enum Color color);
 

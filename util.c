@@ -33,10 +33,10 @@ void printxy(int x, int y, const char* format, ...) {
   va_end(args);
 }
 
-void printTextBox(TextBox option) {
+void printTextBox(struct TextBox option) {
   printxy(option.x, option.y, option.text);
 }
 
-void setColor(Color color) {
+void setColor(enum Color color) {
   printf("\e[%dm", color);
 }
