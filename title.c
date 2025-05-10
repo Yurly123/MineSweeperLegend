@@ -17,7 +17,7 @@ void titleLoop() {
         gameFlow();
         break;
       case 1: // 게임 설명
-        clearScreen();
+        printHelpScreen();
         break;
       case 2: // 랭킹
         rankingLoop();

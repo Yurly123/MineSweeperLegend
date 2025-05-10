@@ -3,6 +3,7 @@
 #include "util.h"
 #include "ranking.h"
 #include "gameFlow.h"
+#include "help.h"`
 
 #define TITLE_OPTIONS_COUNT 4
 
