@@ -6,6 +6,6 @@
 enum GameState gameLoop(struct Cell** board, enum Difficulty difficulty);
 void printGameScreen(struct Cell** board, enum Difficulty difficulty);
 void updateGameScreen(struct Cell** board, enum Difficulty difficulty);
-void handleGameInput(struct Cell** board, enum Difficulty difficulty);
-void floodFill(struct Cell** board, int x, int y, enum Difficulty difficulty);
+void handleGameInput(struct Cell** board, enum Difficulty difficulty, struct Coord* cursor);
+void floodFill(struct Cell** board, enum Difficulty difficulty, struct Coord target);
 enum GameState checkGameEnd(struct Cell** board, enum Difficulty difficulty);

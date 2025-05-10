@@ -33,3 +33,8 @@ struct RankingEntry {
   enum Difficulty difficulty;
   char* comment;
 };
+
+struct Coord {
+  int x;
+  int y;
+};

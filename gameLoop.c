@@ -2,8 +2,9 @@
 
 enum GameState gameLoop(struct Cell** board, enum Difficulty difficulty) {
   printGameScreen(board, difficulty);
+  struct Coord cursor = {0, 0};
   while (1) {
-    handleGameInput(board, difficulty);
+    handleGameInput(board, difficulty, &cursor);
     updateGameScreen(board, difficulty);
 
     enum GameState gameState = checkGameEnd(board, difficulty);
@@ -26,13 +27,14 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty) {
 }
 
 // 안ㅅㅎ
-void handleGameInput(struct Cell** board, enum Difficulty difficulty) {
+void handleGameInput(struct Cell** board, enum Difficulty difficulty, struct Coord* cursor) {
   
 }
 
 // 박ㅈㅇ
-void floodFill(struct Cell** board, int x, int y, enum Difficulty difficulty) {
-  if (board[x][y].adjacentMines != 0)
+void floodFill(struct Cell** board, enum Difficulty difficulty, struct Coord target) {
+  int x = target.x, y = target.y;
+  if (board[y][x].adjacentMines != 0)
     return;
 
   int rows, cols;
@@ -42,15 +44,15 @@ void floodFill(struct Cell** board, int x, int y, enum Difficulty difficulty) {
     case HARD: rows = 16; cols = 30; break;
   }
 
-  for (int i = x - 1; i <= x + 1; i++) {
-    for (int j = y - 1; j <= y + 1; j++) {
+  for (int i = y - 1; i <= y + 1; i++) {
+    for (int j = x - 1; j <= x + 1; j++) {
       if (i < 0 || i >= rows || j < 0 || j >= cols)
         continue;
       if (board[i][j].isRevealed)
         continue;
 
       board[i][j].isRevealed = 1;
-      floodFill(board, i, j, difficulty);
+      floodFill(board, difficulty, (struct Coord){j, i});
     }
   }
 }
