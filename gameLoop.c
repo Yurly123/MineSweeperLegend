@@ -1,16 +1,26 @@
 #include "gameLoop.h"
 
-enum GameState gameLoop(struct Cell** board, enum Difficulty difficulty) {
+enum GameState gameLoop(struct Cell** board, enum Difficulty difficulty, time_t* gameTime) {
   printGameScreen(board, difficulty);
+
   struct Coord cursor = {0, 0};
+  int isFirstClick = 1;
+  time_t startTime, endTime;
   while (1) {
     handleGameInput(board, difficulty, &cursor);
     updateGameScreen(board, difficulty);
+
+    if (isFirstClick) {
+      isFirstClick = 0;
+      time(&startTime);
+    }
 
     enum GameState gameState = checkGameEnd(board, difficulty);
     switch (gameState) {
       case PLAYING: break;
       case GAME_OVER: case WIN:
+        time(&endTime);
+        *gameTime = difftime(endTime, startTime);
         return gameState;
     }
   }

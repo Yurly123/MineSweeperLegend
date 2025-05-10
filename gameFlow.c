@@ -5,13 +5,16 @@ void gameFlow() {
   struct Cell** board;
   initializeBoard(board, difficulty);
 
-  enum GameState gameResult = gameLoop(board, difficulty);
+  time_t gameTime;
+  enum GameState gameResult = gameLoop(board, difficulty, &gameTime);
   switch (gameResult) {
     case GAME_OVER:
       printxy(0, 0, "Game Over!");
+      printxy(0, 1, "Time: %ld seconds", gameTime);
       break;
     case WIN:
       printxy(0, 0, "You Win!");
+      printxy(0, 1, "Time: %ld seconds", gameTime);
       break;
   }
   waitForInput();
