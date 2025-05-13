@@ -36,7 +36,7 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty) {
   
 }
 
-// 안ㅅㅎ
+// 안ㅅㅎ님이시다.뿌슝빠슝
 void handleGameInput(struct Cell** board, enum Difficulty difficulty, struct Coord* cursor) {
   
 }
