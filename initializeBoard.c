@@ -51,5 +51,43 @@ void placeMines(struct Cell** board, enum Difficulty difficulty) { // 2차원 �
 
 // 김ㅇㅈ
 void calculateAdjacentMines(struct Cell** board, enum Difficulty difficulty) {
-  
+  int rows, colums;
+  int dx[8] = {-1,-1,0,1,1,1,0,-1};
+  int dy[8] = {0,1,1,1,0,-1,-1,-1};
+  if (difficulty == EASY){
+    colums = 9;
+    rows = 9;
+    
+  }else if (difficulty == MEDIUM){
+    colums = 16;
+    rows = 16;
+  }else{
+    colums = 30;
+    rows = 16;
+  }
+  for(int r=0; r< rows;r++){
+    for(int c = 0; c<colums; c++){
+      board[r][c].adjacentMines =0;
+      if(board[r][c].isMine){
+          continue;}
+      for(int i =0; i<8;i++){       
+        int x = c + dx[i];
+        int y = r + dy[i];
+        if(0<=x && x<colums&& 0<=y && y<rows){
+          if(board[y][x].isMine == 1){
+            board[r][c].adjacentMines++;
+          }else{
+            continue;
+          }
+        }
+      }
+    
+    }
+
+
+  }
 }
+
+
+  
+
