@@ -7,8 +7,9 @@ enum GameState gameLoop(struct Cell** board, enum Difficulty difficulty, time_t*
   int isFirstClick = 1;
   time_t startTime, endTime;
   while (1) {
+    struct Coord temp = cursor;
     handleGameInput(board, difficulty, &cursor);
-    updateGameScreen(board, difficulty);
+    updateGameScreen(board, difficulty, cursor, temp);
 
     if (isFirstClick) {
       isFirstClick = 0;
@@ -32,7 +33,7 @@ void printGameScreen(struct Cell** board, enum Difficulty difficulty) {
 }
 
 // 표ㅅㅎ
-void updateGameScreen(struct Cell** board, enum Difficulty difficulty) {
+void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Coord cursor, struct Coord prevCursor) {
   
 }
 
