@@ -7,9 +7,81 @@ void initializeBoard(struct Cell** board, enum Difficulty difficulty) {
 }
 
 // 박ㅅㅇ
-void initializeArray(struct Cell** board, enum Difficulty difficulty) {
 
+ // 초기화 함수 정의
+void initializeArray(struct Cell** board, enum Difficulty difficulty) {
+    int rows = 0, cols = 0;
+
+    switch (difficulty) {
+        case EASY:
+            rows = 9;
+            cols = 9;
+            break;
+        case MEDIUM:
+            rows = 16;
+            cols = 16;
+            break;
+        case HARD:
+            rows = 16;
+            cols = 30;
+            break;
+        default:
+            return;
+    }
+
+    // 보드 초기화
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            board[i][j].isMine = 0;
+            board[i][j].adjacentMines = 0;
+            board[i][j].isFlagged = 0;
+            board[i][j].isRevealed = 0;
+        }
+    }
 }
+
+int main() {
+    enum Difficulty difficulty = MEDIUM;
+    int rows = 0, cols = 0;
+
+    switch (difficulty) {
+        case EASY:
+            rows = 9;
+            cols = 9;
+            break;
+        case MEDIUM:
+            rows = 16;
+            cols = 16;
+            break;
+        case HARD:
+            rows = 16;
+            cols = 30;
+            break;
+    }
+
+    // 보드 동적 메모리 할당
+    struct Cell** board = (struct Cell**)malloc(rows * sizeof(struct Cell*));
+    for (int i = 0; i < rows; i++) {
+        board[i] = (struct Cell*)malloc(cols * sizeof(struct Cell));
+    }
+
+    // 보드 초기화
+    initializeArray(board, difficulty);
+
+    // 확인용 출력
+    printf("board[0][0]: isMine = %d, isFlagged = %d, isRevealed = %d\n", 
+           board[0][0].isMine, board[0][0].isFlagged, board[0][0].isRevealed);
+
+    // 메모리 해제
+    for (int i = 0; i < rows; i++) {
+        free(board[i]);
+    }
+    free(board);
+
+    return 0;
+}
+
+
 
 // 최ㅇㅇ
 void placeMines(struct Cell** board, enum Difficulty difficulty) { // 2차원 포인터, Difficulty 사용
