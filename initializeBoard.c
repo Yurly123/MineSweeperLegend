@@ -7,7 +7,9 @@ void initializeBoard(struct Cell** board, enum Difficulty difficulty) {
 }
 
 // 박ㅅㅇ
+void initializeArray(struct Cell** board, enum Difficulty difficulty) {
 
+}
 
 // 최ㅇㅇ
 void placeMines(struct Cell** board, enum Difficulty difficulty) { // 2차원 포인터, Difficulty 사용
