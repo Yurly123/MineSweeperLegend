@@ -8,7 +8,49 @@ void initializeBoard(struct Cell** board, enum Difficulty difficulty) {
 
 // 박ㅅㅇ
 void initializeArray(struct Cell** board, enum Difficulty difficulty) {
-  
+  #include <stdlib.h>
+#include "types.h" // struct Cell, enum Difficulty 포함
+
+void initializeArray(struct Cell*** board, enum Difficulty difficulty) {
+    int rows, cols;
+
+    // 난이도에 따라 행/열 크기 설정
+    switch (difficulty) {
+        case EASY:
+            rows = 9;
+            cols = 9;
+            break;
+        case MEDIUM:
+            rows = 16;
+            cols = 16;
+            break;
+        case HARD:
+            rows = 16;
+            cols = 30;
+            break;
+        default:
+            rows = 0;
+            cols = 0;
+            break;
+    }
+
+    // 메모리 동적할당: 2차원 배열 (rows x cols)
+    *board = (struct Cell**)malloc(rows * sizeof(struct Cell*));
+    for (int i = 0; i < rows; i++) {
+        (*board)[i] = (struct Cell*)malloc(cols * sizeof(struct Cell));
+    }
+
+    // 각 셀 초기화
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            (*board)[i][j].isMine = 0;
+            (*board)[i][j].adjacentMines = 0;
+            (*board)[i][j].isFlagged = 0;
+            (*board)[i][j].isRevealed = 0;
+        }
+    }
+}
+
 }
 
 // 최ㅇㅇ
