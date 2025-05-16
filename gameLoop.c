@@ -99,8 +99,41 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Co
 
 // 안ㅅㅎ님이시다.뿌슝빠슝
 void handleGameInput(struct Cell** board, enum Difficulty difficulty, struct Coord* cursor) {
-  
+  int rows, cols;
+  switch (difficulty) {
+    case EASY: rows = 9; cols = 9; break;
+    case MEDIUM: rows = 16; cols = 16; break;
+    case HARD: rows = 16; cols = 30; break;
+  }
+
+  char input = getInput();
+
+  switch (input) {
+    case 'w': if (cursor->y > 0) cursor->y--; break;
+    case 's': if (cursor->y < rows - 1) cursor->y++; break;
+    case 'a': if (cursor->x > 0) cursor->x--; break;
+    case 'd': if (cursor->x < cols - 1) cursor->x++; break;
+    case 'j': {
+      struct Cell* cell = &board[cursor->y][cursor->x];
+      if (!cell->isRevealed && !cell->isFlagged) {
+        cell->isRevealed = 1;
+        if (!cell->isMine && cell->adjacentMines == 0) {
+          floodFill(board, difficulty, *cursor);
+        }
+      }
+      break;
+    }
+    case 'k': {
+      struct Cell* cell = &board[cursor->y][cursor->x];
+      if (!cell->isRevealed) {
+        cell->isFlagged = !cell->isFlagged;
+      }
+      break;
+    }
+    default: break;
+  }
 }
+
 
 // 박ㅈㅇ
 void floodFill(struct Cell** board, enum Difficulty difficulty, struct Coord target) {
