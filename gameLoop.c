@@ -39,7 +39,7 @@ void printGameScreen(struct Cell** board, enum Difficulty difficulty) {
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
       setBackgroundColor(WHITE);
-      printxy(j, i, "  "); 
+      printxy(j * 2 + 1, i + 2, "  "); 
       setBackgroundColor(RESET);
     }
   }
@@ -61,16 +61,16 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Co
     if (board[prevCursor.y][prevCursor.x].isRevealed) {
       setBackgroundColor(BRIGHT_BLACK);
       if (board[prevCursor.y][prevCursor.x].isMine) {
-        printxy(prevCursor.x * 2, prevCursor.y, " *");
+        printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, " *");
       } else if (board[prevCursor.y][prevCursor.x].adjacentMines != 0) {
-        printxy(prevCursor.x * 2, prevCursor.y, "%d", board[prevCursor.y][prevCursor.x].adjacentMines);
+        printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, "%d", board[prevCursor.y][prevCursor.x].adjacentMines);
       } else {
-        printxy(prevCursor.x * 2, prevCursor.y, "  ");
+        printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, "  ");
       }
     } else if (board[prevCursor.y][prevCursor.x].isFlagged) {
-      printxy(prevCursor.x * 2, prevCursor.y, " F");
+      printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, " F");
     } else {
-      printxy(prevCursor.x * 2, prevCursor.y, "  ");
+      printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, "  ");
     }
     setBackgroundColor(RESET);
   }
@@ -81,16 +81,16 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Co
     if (board[cursor.y][cursor.x].isRevealed) {
       setBackgroundColor(GREEN);
       if (board[cursor.y][cursor.x].isMine) {
-        printxy(cursor.x * 2, cursor.y, " *");
+        printxy(cursor.x * 2 + 2, cursor.y + 2, " *");
       } else if (board[cursor.y][cursor.x].adjacentMines != 0) {
-        printxy(cursor.x * 2, cursor.y, "%d", board[cursor.y][cursor.x].adjacentMines);
+        printxy(cursor.x * 2 + 2, cursor.y + 2, "%d", board[cursor.y][cursor.x].adjacentMines);
       } else {
-        printxy(cursor.x * 2, cursor.y, "  ");
+        printxy(cursor.x * 2 + 2, cursor.y + 2, "  ");
       }
     } else if (board[cursor.y][cursor.x].isFlagged) {
-      printxy(cursor.x * 2, cursor.y, " F");
+      printxy(cursor.x * 2 + 2, cursor.y + 2, " F");
     } else {
-      printxy(cursor.x * 2, cursor.y, "  ");
+      printxy(cursor.x * 2 + 2, cursor.y + 2, "  ");
     }
     setBackgroundColor(RESET);
   }
@@ -99,7 +99,7 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Co
 
 // 안ㅅㅎ님이시다.뿌슝빠슝
 void handleGameInput(struct Cell** board, enum Difficulty difficulty, struct Coord* cursor) {
-  
+
 }
 
 // 박ㅈㅇ

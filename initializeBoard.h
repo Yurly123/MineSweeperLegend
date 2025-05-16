@@ -5,6 +5,6 @@
 
 void initializeBoard(struct Cell** board, enum Difficulty difficulty);
 
-void initializeArray(struct Cell** board, enum Difficulty difficulty);
+struct Cell** initializeArray(enum Difficulty difficulty);
 void placeMines(struct Cell** board, enum Difficulty difficulty);
 void calculateAdjacentMines(struct Cell** board, enum Difficulty difficulty);

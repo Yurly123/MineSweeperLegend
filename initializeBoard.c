@@ -1,13 +1,13 @@
 #include "initializeBoard.h"
 
 void initializeBoard(struct Cell** board, enum Difficulty difficulty) {
-  initializeArray(board, difficulty);
+  board = initializeArray(difficulty);
   placeMines(board, difficulty);
   calculateAdjacentMines(board, difficulty);
 }
 
 // 박ㅅㅇ
-void initializeArray(struct Cell** board, enum Difficulty difficulty) {
+struct Cell** initializeArray(enum Difficulty difficulty) {
     int rows = 0, cols = 0;
 
     switch (difficulty) {
@@ -23,8 +23,6 @@ void initializeArray(struct Cell** board, enum Difficulty difficulty) {
             rows = 16;
             cols = 30;
             break;
-        default:
-            return;
     }
 
     struct Cell** board = (struct Cell**)malloc(rows * sizeof(struct Cell*));
@@ -41,6 +39,8 @@ void initializeArray(struct Cell** board, enum Difficulty difficulty) {
             board[i][j].isRevealed = 0;
         }
     }
+
+    return board;
 }
 
 // 최ㅇㅇ
