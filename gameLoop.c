@@ -62,7 +62,7 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Co
   if (prevCursor.x >= 0 && prevCursor.x < cols && prevCursor.y >= 0 && prevCursor.y < rows) {
     setBackgroundColor(WHITE);
     if (board[prevCursor.y][prevCursor.x].isRevealed) {
-      setBackgroundColor(BRIGHT_BLACK);
+      setBackgroundColor(BLACK);//! 수정
       if (board[prevCursor.y][prevCursor.x].isMine) {
         printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, " *");
       } else if (board[prevCursor.y][prevCursor.x].adjacentMines != 0) {
@@ -71,7 +71,9 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Co
         printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, "  ");
       }
     } else if (board[prevCursor.y][prevCursor.x].isFlagged) {
+      setTextColor(BRIGHT_RED);//! 수정
       printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, " F");
+      setTextColor(WHITE);  //! 수정
     } else {
       printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, "  ");
     }
