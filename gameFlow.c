@@ -2,8 +2,7 @@
 
 void gameFlow() {
   enum Difficulty difficulty = selectDifficulty();
-  struct Cell** board;
-  initializeBoard(board, difficulty);
+  struct Cell **board = initializeBoard(difficulty);
 
   time_t gameTime;
   enum GameState gameResult = gameLoop(board, difficulty, &gameTime);

@@ -1,9 +1,10 @@
 #include "initializeBoard.h"
 
-void initializeBoard(struct Cell** board, enum Difficulty difficulty) {
-  board = initializeArray(difficulty);
+struct Cell** initializeBoard(enum Difficulty difficulty) {
+  struct Cell** board = initializeArray(difficulty);
   placeMines(board, difficulty);
   calculateAdjacentMines(board, difficulty);
+  return board;
 }
 
 // 박ㅅㅇ

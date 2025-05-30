@@ -39,7 +39,7 @@ void printGameScreen(struct Cell** board, enum Difficulty difficulty) {
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
       setBackgroundColor(WHITE);
-      printxy(j * 2 + 1, i + 2, "  "); 
+      printxy(j * 2 + 2, i + 2, "  "); 
       setBackgroundColor(RESET);
     }
   }
