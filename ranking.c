@@ -6,16 +6,47 @@ void rankingLoop() {
 
   printRankingScreen(rankingEntries, count);
 
+  waitForInput();
+  clearScreen();
   freeRankingEntries(rankingEntries, count);
 }
 
 void printRankingScreen(struct RankingEntry* entries, int count) {
   clearScreen();
-  char difficultyString[3][10] = {"쉬움", "보통", "어려움"};
-  for (int i = 0; i < count; i++) {
-    printf("%d. %s (%s, %d초): %s\n", i + 1, entries[i].name, difficultyString[entries[i].difficulty], entries[i].time, entries[i].comment);
+  sortRankingEntries(entries, count);
+
+  printf("\n=== 쉬움 랭킹 ===\n\n");
+  for (int i = 0, easyCount = 0; i < count; i++) {
+    if (entries[i].difficulty == EASY) {
+      printf("%d. %s - %d초 : %s\n", ++easyCount, entries[i].name, entries[i].time, entries[i].comment);
+    }
   }
-  waitForInput();
+
+  printf("\n=== 보통 랭킹 ===\n\n");
+  for (int i = 0, mediumCount = 0; i < count; i++) {
+    if (entries[i].difficulty == MEDIUM) {
+      printf("%d. %s - %d초 : %s\n", ++mediumCount, entries[i].name, entries[i].time, entries[i].comment);
+    }
+  }
+
+  printf("\n=== 어려움 랭킹 ===\n\n");
+  for (int i = 0, hardCount = 0; i < count; i++) {
+    if (entries[i].difficulty == HARD) {
+      printf("%d. %s - %d초 : %s\n", ++hardCount, entries[i].name, entries[i].time, entries[i].comment);
+    }
+  }
+}
+
+void sortRankingEntries(struct RankingEntry* entries, int count) {
+  for (int i = 0; i < count - 1; i++) {
+    for (int j = i + 1; j < count; j++) {
+      if (entries[i].time > entries[j].time) {
+        struct RankingEntry temp = entries[i];
+        entries[i] = entries[j];
+        entries[j] = temp;
+      }
+    }
+  }
 }
 
 void registerRankingEntry(time_t gameTime, enum Difficulty difficulty) {
@@ -27,7 +58,7 @@ void registerRankingEntry(time_t gameTime, enum Difficulty difficulty) {
   fgets(name, sizeof(name), stdin);
   name[strcspn(name, "\n")] = '\0'; // 개행 문자 제거
 
-  printf("댓글을 입력하세요 (선택사항): ");
+  printf("댓글을 입력하세요: ");
   fgets(comment, sizeof(comment), stdin);
   comment[strcspn(comment, "\n")] = '\0'; // 개행 문자 제거
 

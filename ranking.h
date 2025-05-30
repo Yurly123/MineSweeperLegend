@@ -5,4 +5,5 @@
 
 void rankingLoop();
 void printRankingScreen(struct RankingEntry* entries, int count);
+void sortRankingEntries(struct RankingEntry* entries, int count);
 void registerRankingEntry(time_t gameTime, enum Difficulty difficulty);
