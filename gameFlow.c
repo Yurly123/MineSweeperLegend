@@ -24,11 +24,10 @@ void gameFlow() {
     freeBoard(board, difficulty);
 
     switch (endOption) {
-      case RESTART:
-        break;
-      case EXIT:
-        return;
+      case RESTART: break;
+      case EXIT: return;
       case RANKING:
+        registerRankingEntry(gameTime, difficulty);
         return;
     }
   }

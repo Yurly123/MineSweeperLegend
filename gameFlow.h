@@ -5,6 +5,7 @@
 #include "gameLoop.h"
 #include "initializeBoard.h"
 #include "gameEnd.h"
+#include "ranking.h"
 
 void gameFlow();
 enum Difficulty selectDifficulty();
