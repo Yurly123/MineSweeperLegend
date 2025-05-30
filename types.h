@@ -21,6 +21,12 @@ enum GameState {
   WIN,
 };
 
+enum GameEndOption {
+  RESTART, 
+  EXIT, 
+  RANKING,
+};
+
 struct TextBox {
   int x;
   int y;

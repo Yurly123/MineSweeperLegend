@@ -2,6 +2,7 @@
 
 void clearScreen() {
   system("cls || clear");
+  setTextAndBackgroundColor(RESET, RESET);
 }
 
 char getInput() {

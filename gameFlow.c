@@ -2,26 +2,36 @@
 
 void gameFlow() {
   enum Difficulty difficulty = selectDifficulty();
-  struct Cell **board = initializeBoard(difficulty);
+  while(1) {
+    struct Cell **board = initializeBoard(difficulty);
 
-  time_t gameTime;
-  enum GameState gameResult = gameLoop(board, difficulty, &gameTime);
-  setBackgroundColor(RESET);  //! 배경색 초기화
-  setTextColor(RESET);        //! 텍스트색 초기화
-  switch (gameResult) {
-    case GAME_OVER:
-      printxy(0, 0, "Game Over!");
-      printxy(0, 1, "Time: %ld seconds", gameTime);
-      break;
-    case WIN:
-      printxy(0, 0, "You Win!");
-      printxy(0, 1, "Time: %ld seconds", gameTime);
-      break;
+    time_t gameTime;
+    enum GameState gameResult = gameLoop(board, difficulty, &gameTime);
+    setBackgroundColor(RESET); //! 배경색 초기화
+    setTextColor(RESET);       //! 텍스트색 초기화
+
+    enum GameEndOption endOption;
+    switch (gameResult) {
+      case GAME_OVER:
+        endOption = gameOverLoop(gameTime, difficulty);
+        break;
+      case WIN:
+        endOption = winLoop(gameTime, difficulty);
+        break;
+    }
+
+    clearScreen();
+    freeBoard(board, difficulty);
+
+    switch (endOption) {
+      case RESTART:
+        break;
+      case EXIT:
+        return;
+      case RANKING:
+        return;
+    }
   }
-  waitForInput();
-  clearScreen();
-
-  freeBoard(board, difficulty);
 }
 
 enum Difficulty selectDifficulty() {
