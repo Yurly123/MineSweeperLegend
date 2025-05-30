@@ -1,11 +1,14 @@
 #include "gameLoop.h"
 
+struct Coord nullCoord = {-1, -1};
+
 enum GameState gameLoop(struct Cell** board, enum Difficulty difficulty, time_t* gameTime) {
   printGameScreen(board, difficulty);
 
   struct Coord cursor = {0, 0};
   int isFirstClick = 1;
   time_t startTime, endTime;
+  updateGameScreen(board, difficulty, cursor, nullCoord);
   while (1) {
     struct Coord temp = cursor;
     handleGameInput(board, difficulty, &cursor);
@@ -63,7 +66,7 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Co
       if (board[prevCursor.y][prevCursor.x].isMine) {
         printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, " *");
       } else if (board[prevCursor.y][prevCursor.x].adjacentMines != 0) {
-        printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, "%d", board[prevCursor.y][prevCursor.x].adjacentMines);
+        printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, " %d", board[prevCursor.y][prevCursor.x].adjacentMines);
       } else {
         printxy(prevCursor.x * 2 + 2, prevCursor.y + 2, "  ");
       }
@@ -83,7 +86,7 @@ void updateGameScreen(struct Cell** board, enum Difficulty difficulty, struct Co
       if (board[cursor.y][cursor.x].isMine) {
         printxy(cursor.x * 2 + 2, cursor.y + 2, " *");
       } else if (board[cursor.y][cursor.x].adjacentMines != 0) {
-        printxy(cursor.x * 2 + 2, cursor.y + 2, "%d", board[cursor.y][cursor.x].adjacentMines);
+        printxy(cursor.x * 2 + 2, cursor.y + 2, " %d", board[cursor.y][cursor.x].adjacentMines);
       } else {
         printxy(cursor.x * 2 + 2, cursor.y + 2, "  ");
       }
@@ -137,6 +140,7 @@ void handleGameInput(struct Cell** board, enum Difficulty difficulty, struct Coo
 
 // 박ㅈㅇ
 void floodFill(struct Cell** board, enum Difficulty difficulty, struct Coord target) {
+  updateGameScreen(board, difficulty, nullCoord, target);
   int x = target.x, y = target.y;
   if (board[y][x].adjacentMines != 0)
     return;
