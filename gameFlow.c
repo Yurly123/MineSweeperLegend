@@ -6,6 +6,8 @@ void gameFlow() {
 
   time_t gameTime;
   enum GameState gameResult = gameLoop(board, difficulty, &gameTime);
+  setBackgroundColor(RESET);  //! 배경색 초기화
+  setTextColor(RESET);        //! 텍스트색 초기화
   switch (gameResult) {
     case GAME_OVER:
       printxy(0, 0, "Game Over!");
