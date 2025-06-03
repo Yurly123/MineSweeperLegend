@@ -7,6 +7,7 @@
 #include <string.h>
 #include <conio.h>
 #include <windows.h>
+#include <locale.h>
 
 #include "types.h"
 
